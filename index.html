@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<title>MBA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+<link href="imageviewer.css"  rel="stylesheet" type="text/css" />
+<!-- or <script src="jquery.js"></script> -->
+<style>
+  .speech {border: 1px solid #DDD; width: 300px; padding: 0; margin: 0}
+  .speech input {border: 0; width: 240px; display: inline-block; height: 30px;}
+  .speech img {float: right; width: 40px }
+</style>
+<script>
+  function startDictation() {
+
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+      var recognition = new webkitSpeechRecognition();
+
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.lang = "en-US";
+      recognition.start();
+
+      recognition.onresult = function(e) {
+        document.getElementById('transcript').value
+                                 = e.results[0][0].transcript;
+        recognition.stop();
+      document.getElementById('labnol').submit();
+      };
+
+      recognition.onerror = function(e) {
+        recognition.stop();
+        alert(e);
+      }
+
+    }
+  }
+  $(document).ready(function(){
+    $('.dropdown').on('shown.bs.dropdown', function(){
+        $('html, body').animate({
+        scrollTop: $("#listfunc").offset().top
+      });
+    });
+});
+</script>
+<script src="imageviewer.js"></script>
+<style type="text/css" media="screen">
+  .dropdown-menu-center {
+  left: 50% !important;
+  right: auto !important;
+  text-align: center !important;
+  transform: translate(-50%, 10%) !important;
+  width:100%;
+  margin-bottom: 30px;
+}
+</style>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#home" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="#data" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DATA</a>
+    <a href="#functions" class="w3-bar-item w3-button w3-padding-large w3-hide-small">FUNCTIONS</a>
+  </div>
+</div>
+
+<!-- Navbar on small screens
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#band" class="w3-bar-item w3-button w3-padding-large">BAND</a>
+  <a href="#tour" class="w3-bar-item w3-button w3-padding-large">TOUR</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large">CONTACT</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
+</div> -->
+
+<!-- Page content -->
+<!-- <div class="w3-content" style="max-width:2000px;margin-top:46px"> -->
+
+  <!-- Automatic Slideshow Images -->
+<!--   <div class="mySlides w3-display-container w3-center">
+    <img src="/w3images/la.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>Los Angeles</h3>
+      <p><b>We had the best time playing at Venice Beach!</b></p>   
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/w3images/ny.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>New York</h3>
+      <p><b>The atmosphere in New York is lorem ipsum.</b></p>    
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/w3images/chicago.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>Chicago</h3>
+      <p><b>Thank you, Chicago - A night we won't forget.</b></p>    
+    </div>
+  </div> -->
+
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="home">
+    <h2 class="w3-wide">Market Basket Analysis</h2>
+    <p class="w3-opacity"><i>SuperMarketting</i></p>
+    <p class="w3-justify">Market basket analysis analyzes the buying habits of customers as to, which products are tend to be purchased
+together. This can be very helpful for the retailers to develop marketing strategies, make business decisions and maximize
+the profits.It is an important component of analytical system in retail organizations to determine the placement of
+goods, designing sales promotions for different segments of customers to improve customer satisfaction and hence the profit
+of the supermarket.</p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-third">
+        <p>Association Analysis</p>
+        <a href="association-rules.png"><img src="association-rules.png" class="img-thumbnail" alt="Random Name" style="width:95%"></a>
+      </div>
+      <div class="w3-third">
+        <p>Exploratory Data Analysis</p>
+        <a href ="eda.jpg"><img src="eda.jpg" class="img-thumbnail" alt="Random Name" style="width:95%"></a>
+      </div>
+      <div class="w3-third">
+        <p>Apriori Algorithm</p>
+        <a href="apr.jpg" ><img src="apr.jpg" class="img-thumbnail" alt="Random Name" style="width:95%"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Tour Section -->
+  <div class="w3-black" id="data">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">Data</h2>
+      <p class="w3-opacity w3-center"><i>Data of 3 Million orders, 200,000 Customers and more</i></p><br>
+
+      <ul class="w3-ul w3-border w3-white w3-text-grey">
+        <a href = "aisles.html" class="list-group-item list-group-item-action" >Aisles <span class=" w3-right w3-margin-right">(Aisles of the Supermarket)</span></a>
+        <a href = "departments.html" class="list-group-item list-group-item-action">Departments <span class=" w3-right w3-margin-right">(Departments of the Supermarket)</span></a>
+        <a href = "order_products_prior.html" class="list-group-item list-group-item-action">Order Products Prior <span class=" w3-right w3-margin-right">(Historical Data collected)</span></a>
+        <a href = "order_products_train.html" class="list-group-item list-group-item-action">Order Products Train <span class=" w3-right w3-margin-right">(Training Set)</span></a>
+        <a href = "orders.csv" class="list-group-item list-group-item-action">Orders <span class=" w3-right w3-margin-right">(Data to be tested on)</span></a>
+        <a href = "products.html" class="list-group-item list-group-item-action">Products <span class=" w3-right w3-margin-right">(Products of the Supermarket)</span></a>
+      </ul>
+</div>
+</div>
+     <!--  <div class=" list-group w3-row-padding w3-padding-32" style="margin:0 -16px">
+        <div class="w3-third w3-margin-bottom">
+          <img src="/w3images/newyork.jpg" alt="New York" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>New York</b></p>
+            <p class="w3-opacity">Fri 27 Nov 2016</p>
+            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <img src="/w3images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Paris</b></p>
+            <p class="w3-opacity">Sat 28 Nov 2016</p>
+            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>San Francisco</b></p>
+            <p class="w3-opacity">Sun 29 Nov 2016</p>
+            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Ticket Modal -->
+<!--   <div id="ticketModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-teal w3-center w3-padding-32"> 
+        <span onclick="document.getElementById('ticketModal').style.display='none'" 
+       class="w3-button w3-teal w3-xlarge w3-display-topright">×</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Tickets</h2>
+      </header>
+      <div class="w3-container">
+        <p><label><i class="fa fa-shopping-cart"></i> Tickets, $15 per person</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="How many?">
+        <p><label><i class="fa fa-user"></i> Send To</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="Enter email">
+        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">PAY <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
+        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- The Contact Section -->
+
+
+
+<div class="w3-container w3-content w3-center w3-padding-64 w3-white" style="max-width:800px" id="home">
+    <div class="container" id="functions">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h2 class="w3-wide w3-center">Functions</h2>
+      <p class="w3-opacity w3-center"><i>View Everything with help of graphs</i></p><br>
+          </div>
+                              <!-- <img src="https://cdn.brainpop.com/math/dataanalysis/graphs/screenshot1.png" alt=""> -->
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select a function
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu dropdown-menu-center">
+    <li><button type="button" class="btn btn-default btn-md " data-toggle="modal" data-target="#myModal1">Reorder Frequency</button></li>
+    <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal2">Best Selling Aisels in a Department</button></li>
+    <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal14">Best Selling Departments</button></li>
+       <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal3">Days of orders in a week</button></li>       
+       <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal4">Hours of orders in a day</button></li>   
+       <li><button type="button" class="btn btn-default btn-sm mt-1" data-toggle="modal" data-target="#myModal5">Most important aisles in each department(number of products)</button></li>   
+       <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal6">Most important aisles over all departments</button></li>       
+   
+    <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal7">Most important departmens(number of products)</button></li>       
+   
+    <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal8">Most ordered products</button></li>       
+    <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal9">Most Reordered products</button></li>       
+     <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal10">Number of orders people usually order</button></li>      
+    <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal11">Orders in our whole dataset</button></li>       
+    <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal12">orders made by each customer
+    </button></li>       
+    <li><button type="button" class="btn btn-default btn-md mt-1" data-toggle="modal" data-target="#myModal13">Period of Reorder</button></li>
+   
+  </ul>
+</div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <script type="text/javascript">
+$(document).ready(function() {
+  $(".jumper").on("click", function( e ) {
+
+    e.preventDefault();
+
+    $("body, html").animate({ 
+      scrollTop: $( $(this).attr('href') ).offset().top 
+    }, 700);
+
+  });
+});
+$(".main-container.collapse").on('shown.bs.collapse', function () {    
+//when a collapsed div is shown hide all other collapsible divs that are visible
+       $(".main-container.collapse").not($(this)).collapse('hide');
+});
+$(function () {
+    $('.pannable-image').ImageViewer();
+});
+var viewer = ImageViewer('#container',{
+    maxZoom : 400
+});
+</script>
+  <div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Reorder Frequency</h4>
+      </div>
+      <div class="modal-body mx-auto">
+         <img class="pannable-image" src="Reordered frequency.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ <div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Best Selling Aisels in a Department</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"   src="Best selling aisles in a department.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Days of orders in a week</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"    src="Days of orders in a week.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Hours of orders in a day</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"    src="Hours of orders in a day.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal5" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Most important aisles in each department by number of products</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"   src="Most important Aisles in each Department (by number of Products).png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal6" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Most important aisles over all departments</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"    src="Most important Aisles over all Departments (by number of Products).png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal7" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Most important departmens by number of products</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"    src="Most important Departments (by number of products).png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal8" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Most ordered products</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"    src="Most ordered Product.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal9" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Most Reordered products</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"    src="Most reordered products.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal10" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Number of orders people usually order</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"    src="Number of orders people usually order.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal11" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Orders in our whole dataset</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"    src="Orders in the whole dataset.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal12" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Orders made by each customer</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"   src="Orders made by each customer.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal13" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Period of Reorder</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"   src="Period of reorders.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="myModal14" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mx-auto">Best Selling Departments</h4>
+      </div>
+      <div class="modal-body">
+          <img class="mx-auto pannable-image" width="700"   src="Best selling departments.png" alt="" id ='graph12'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
